@@ -9,7 +9,7 @@ class TarefaController extends Controller
 {  
     public function __construct()
     {
-        $this->middleware('auth');
+       $this->middleware('auth');
     } 
     
     /**
@@ -19,7 +19,11 @@ class TarefaController extends Controller
      */
     public function index()
     {
-        return 'home de tarefa';
+        if(auth()->check())
+        {
+            $name = auth()->user()->name;
+            return "Você fez autenticação no sistema como <b>$name</b>";
+        }        
     }
 
     /**
