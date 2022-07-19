@@ -13,7 +13,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('tarefa', 'App\Http\Controllers\TarefaController');
 
 Route::get('mensagem-teste', function(){
-    //return new MensagemTestMail();
-    Mail::to('tiagoeinez@gmail.com')->send(new MensagemTestMail()); // posso para debug, só executar esta linha de código no tinker, não esquecer de dar um use na class use App\Mail\MensagemTestMail;
-    return 'E-mail enviado com sucesso';
+    return new MensagemTestMail();
+   // Mail::to('tiagoeinez@gmail.com')->send(new MensagemTestMail()); // posso para debug, só executar esta linha de código no tinker, não esquecer de dar um use na class use App\Mail\MensagemTestMail;
+   // return 'E-mail enviado com sucesso';
 });
