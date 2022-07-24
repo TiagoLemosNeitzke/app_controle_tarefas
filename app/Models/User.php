@@ -8,8 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\CanResetPassword;
 use App\Notifications\RedefinirSenhaNotification;
+use App\Notifications\VerificarEmailNotification;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new RedefinirSenhaNotification($token, $this->email, $this->name));
+    }
+
+    public function SendEmailVerificationNotification()
+    {
+        $this->notify(new VerificarEmailNotification($this->name));
     }
 }
