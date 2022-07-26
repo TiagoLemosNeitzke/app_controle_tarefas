@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Mail\MensagemTestMail;
+use Illuminate\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -9,9 +10,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]); // verify habilita a verificação de email
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
+/* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])
 ->name('home')
-->middleware('verified');
+->middleware('verified'); */
 Route::resource('tarefa', 'App\Http\Controllers\TarefaController')->middleware('verified');
 
 Route::get('mensagem-teste', function(){

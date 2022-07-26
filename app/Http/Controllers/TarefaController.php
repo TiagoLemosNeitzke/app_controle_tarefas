@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
+use Illuminate\Mail;
 use App\Mail\NovaTarefaMail;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
@@ -24,7 +24,11 @@ class TarefaController extends Controller
         if(auth()->check())
         {
             $name = auth()->user()->name;
-            return "Você fez autenticação no sistema como <b>$name</b>";
+            $user_id = auth()->user()->id;
+            //dd($id);
+            $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
+            //dd($tarefas);
+            return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
         }        
     }
 
@@ -46,7 +50,10 @@ class TarefaController extends Controller
      */
     public function store(Request $request)
     {
-        $tarefa = Tarefa::create($request->all());
+        $dados = $request->all('tarefa', 'data_limite_conclusao');
+        $dados['user_id'] = auth()->user()->id;
+        //dd($dados);
+        $tarefa = Tarefa::create($dados);
         $destinatario = auth()->user()->email; // pega o endereço de email do usuário logado
         Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
         return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
@@ -71,7 +78,14 @@ class TarefaController extends Controller
      */
     public function edit(Tarefa $tarefa)
     {
-        //
+        $id = auth()->user()->id;
+        $user_id = $tarefa->user_id;
+
+        if($id === $user_id) {
+            return view('tarefa.edit', ['tarefa' => $tarefa]);
+        }
+
+        return view('/acesso-negado');   
     }
 
     /**
@@ -83,7 +97,13 @@ class TarefaController extends Controller
      */
     public function update(Request $request, Tarefa $tarefa)
     {
-        //
+        if(auth()->user()->id === $tarefa->user_id) {
+            $tarefa->update($request->all());
+            return redirect()->route('tarefa.show', ['tarefa' => $tarefa]);
+        }
+
+        return view('/acesso-negado');      
+        
     }
 
     /**
