@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Mail\MensagemTestMail;
-use Illuminate\Auth;
+
 
 Route::get('/', function () {
     return view('welcome');

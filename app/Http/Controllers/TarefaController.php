@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Mail;
+use Mail;
 use App\Mail\NovaTarefaMail;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
@@ -55,7 +55,7 @@ class TarefaController extends Controller
         //dd($dados);
         $tarefa = Tarefa::create($dados);
         $destinatario = auth()->user()->email; // pega o endereço de email do usuário logado
-        Mail::to($destinatario)->send(new NovaTarefaMail($tarefa));
+        //Mail::to($destinatario)->send(new NovaTarefaMail($tarefa)); // descomentar para enviar email sempre que uma tarefa for criada
         return redirect()->route('tarefa.show', ['tarefa' => $tarefa->id]);
     }
 
@@ -67,7 +67,13 @@ class TarefaController extends Controller
      */
     public function show(Tarefa $tarefa)
     {
-        return view('tarefa.show', ['tarefa' => $tarefa]);
+        $name = auth()->user()->name;
+        $user_id = auth()->user()->id;
+        //dd($id);
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
+        //dd($tarefas);
+        return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
+        
     }
 
     /**
@@ -114,6 +120,15 @@ class TarefaController extends Controller
      */
     public function destroy(Tarefa $tarefa)
     {
-        //
+        //dd(auth()->user()->id, $tarefa->user_id);
+        if(auth()->user()->id === $tarefa->user_id) {
+            Tarefa::destroy($tarefa->id);
+        } else {
+            return view('acesso-negado');
+        }
+        $name = auth()->user()->name;
+        $user_id = auth()->user()->id;
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
+        return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
     }
 }

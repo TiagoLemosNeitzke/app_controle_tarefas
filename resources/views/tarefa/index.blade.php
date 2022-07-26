@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Olá <b>{{$name}}</b>! Veja abaixo sua lista de tarefas.</div>
+                <div class="card-header">
+                    Olá <b>{{$name}}</b>! Veja abaixo sua lista de tarefas. 
+                    <a class="float-end btn btn-primary" href="{{ route('tarefa.create') }}">Novo</a>
+                </div>
 
                 <div class="card-body">
                     <table class="table">
@@ -14,6 +17,7 @@
                                 <th scope="col">ID</th>
                                 <th scope="col">Tarefa</th>
                                 <th scope="col">Data limite conclusão</th>
+                                <th scope="col"></th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -25,6 +29,13 @@
                                 <td>{{$tarefa->tarefa}}</td>
                                 <td>{{date('d/m/Y', strtotime($tarefa->data_limite_conclusao))}}</td>
                                 <td><a class="btn btn-success" href="{{route('tarefa.edit', ['tarefa' => $tarefa->id])}}">Editar</a> </td>
+                                <td>
+                                    <form action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger" type="submit">Excluir</button>
+                                    </form>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

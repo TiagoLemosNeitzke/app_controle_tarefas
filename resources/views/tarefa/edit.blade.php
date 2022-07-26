@@ -22,6 +22,7 @@
                             </div>
 
                             <button type="submit" class="btn btn-primary">Editar Tarefa</button>
+                            <a href="{{ route('tarefa.index') }}" class="btn btn-primary">Voltar</a>
                         </form>
                     </div>
                 </div>

@@ -21,6 +21,7 @@
                         </div>
                        
                         <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        <a href="{{ route('tarefa.index') }}" class="btn btn-primary">Voltar</a>
                     </form>
                 </div>
             </div>
