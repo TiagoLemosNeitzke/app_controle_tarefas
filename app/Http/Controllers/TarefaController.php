@@ -6,6 +6,8 @@ use Mail;
 use App\Mail\NovaTarefaMail;
 use App\Models\Tarefa;
 use Illuminate\Http\Request;
+use App\Exports\TarefasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TarefaController extends Controller
 {  
@@ -130,5 +132,10 @@ class TarefaController extends Controller
         $user_id = auth()->user()->id;
         $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
         return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
+    }
+
+    public function exportacao()
+    {
+        return Excel::download(new TarefasExport, 'tarefas.xlsx');
     }
 }

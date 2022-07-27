@@ -7,7 +7,22 @@
                 <div class="card border-info">
                     <div class="card-header border-info">
                         <h5 class="card-title">Olá <b>{{ $name }}</b>! Veja abaixo sua lista de tarefas.</h5>
-                        <a class="float-end btn btn-primary" href="{{ route('tarefa.create') }}">Novo</a>
+                        <nav class="nav nav-bar">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Tarefas
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li class="nav-item">
+                                        <a class="btn btn-primary mb-2 ms-4 " href="{{ route('tarefa.create') }}">Nova Tarefa</a>
+                                    </li>
+                                    <li>
+                                        <a class="btn btn-primary me-4 ms-4" href="{{ route('tarefa.exportacao') }}">XLSX</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </nav>
                     </div>
 
                     <div class="card-body">
