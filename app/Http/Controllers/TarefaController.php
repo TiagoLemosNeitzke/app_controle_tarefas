@@ -72,7 +72,7 @@ class TarefaController extends Controller
         $name = auth()->user()->name;
         $user_id = auth()->user()->id;
         //dd($id);
-        $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(5);
         //dd($tarefas);
         return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
         
@@ -129,7 +129,7 @@ class TarefaController extends Controller
         }
         $name = auth()->user()->name;
         $user_id = auth()->user()->id;
-        $tarefas = Tarefa::where('user_id', $user_id)->paginate(1);
+        $tarefas = Tarefa::where('user_id', $user_id)->paginate(5);
         return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
     }
 
