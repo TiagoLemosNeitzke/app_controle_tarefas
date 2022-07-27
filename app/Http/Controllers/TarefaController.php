@@ -122,7 +122,6 @@ class TarefaController extends Controller
      */
     public function destroy(Tarefa $tarefa)
     {
-        //dd(auth()->user()->id, $tarefa->user_id);
         if(auth()->user()->id === $tarefa->user_id) {
             Tarefa::destroy($tarefa->id);
         } else {
@@ -134,8 +133,13 @@ class TarefaController extends Controller
         return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
     }
 
-    public function exportacao()
+    public function exportacao($tipo_arquivo)
     {
-        return Excel::download(new TarefasExport, 'tarefas.xlsx');
+        if(in_array($tipo_arquivo, ['xlsx', 'csv', 'pdf']))
+        {
+            return Excel::download(new TarefasExport, 'tarefas.'.$tipo_arquivo);
+        }
+        
+        return redirect()->route('tarefa.index');
     }
 }

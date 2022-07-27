@@ -18,7 +18,13 @@
                                         <a class="btn btn-primary mb-2 ms-4 " href="{{ route('tarefa.create') }}">Nova Tarefa</a>
                                     </li>
                                     <li>
-                                        <a class="btn btn-primary me-4 ms-4" href="{{ route('tarefa.exportacao') }}">XLSX</a>
+                                        <a class="btn btn-primary mb-2 me-4 ms-4" href="{{ route('tarefa.exportacao', ['xlsx']) }}">XLSX</a>
+                                    </li>
+                                     <li>
+                                        <a class="btn btn-primary mb-2 me-4 ms-4" href="{{ route('tarefa.exportacao', ['csv']) }}">CSV</a>
+                                    </li>
+                                     <li>
+                                        <a class="btn btn-primary me-4 ms-4" href="{{ route('tarefa.exportacao', ['pdf']) }}">PDF</a>
                                     </li>
                                 </ul>
                             </li>
