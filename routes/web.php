@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Mail\MensagemTestMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 // A ROTA ABAIXO USEI APENAS PARA APRENDER SOBRE AUTENTICAÇÃO NAS VIEWS
 /* Route::get('/', function () {

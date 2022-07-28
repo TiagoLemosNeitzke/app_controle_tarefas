@@ -24,7 +24,7 @@
                                         <a class="btn btn-primary mb-2 me-4 ms-4" href="{{ route('tarefa.exportacao', ['csv']) }}">CSV</a>
                                     </li>
                                      <li>
-                                        <a class="btn btn-primary me-4 ms-4" href="{{ route('tarefa.exportar') }}">PDF</a>
+                                        <a class="btn btn-primary me-4 ms-4" href="{{ route('tarefa.exportar') }}" target="_blank">PDF</a>
                                     </li>
                                 </ul>
                             </li>
