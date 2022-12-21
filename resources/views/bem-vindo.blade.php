@@ -7,5 +7,5 @@
 
 @guest
     <h1>Bem vindo, visitante.</h1>
-    <p> Tudo que está dentro do guest é exibido se o usuário não estiver autenticado.</p>
+    <p> Crie sua conta para poder usar nosso app. É rapidinho!</p>
 @endguest
