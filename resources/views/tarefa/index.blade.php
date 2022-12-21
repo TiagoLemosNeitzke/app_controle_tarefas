@@ -15,16 +15,20 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li class="nav-item">
-                                        <a class="btn btn-primary mb-2 ms-4 " href="{{ route('tarefa.create') }}">Nova Tarefa</a>
+                                        <a class="btn btn-primary ms-4 mb-2" href="{{ route('tarefa.create') }}">Nova
+                                            Tarefa</a>
                                     </li>
                                     <li>
-                                        <a class="btn btn-primary mb-2 me-4 ms-4" href="{{ route('tarefa.exportacao', ['xlsx']) }}">XLSX</a>
+                                        <a class="btn btn-primary me-4 ms-4 mb-2"
+                                            href="{{ route('tarefa.exportacao', ['xlsx']) }}">XLSX</a>
                                     </li>
-                                     <li>
-                                        <a class="btn btn-primary mb-2 me-4 ms-4" href="{{ route('tarefa.exportacao', ['csv']) }}">CSV</a>
+                                    <li>
+                                        <a class="btn btn-primary me-4 ms-4 mb-2"
+                                            href="{{ route('tarefa.exportacao', ['csv']) }}">CSV</a>
                                     </li>
-                                     <li>
-                                        <a class="btn btn-primary me-4 ms-4" href="{{ route('tarefa.exportar') }}" target="_blank">PDF</a>
+                                    <li>
+                                        <a class="btn btn-primary me-4 ms-4" href="{{ route('tarefa.exportar') }}"
+                                            target="_blank">PDF</a>
                                     </li>
                                 </ul>
                             </li>
@@ -53,16 +57,12 @@
                                                 href="{{ route('tarefa.edit', ['tarefa' => $tarefa->id]) }}">Editar</a>
                                         </td>
                                         <td>
-                                           
-                                           
-                                           <x-modal></x-modal>
-                                           
-                                           {{--  <form action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}"
+                                            <form action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger" type="submit">Excluir</button>
-                                            </form> --}}
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -85,5 +85,4 @@
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endsection

@@ -120,6 +120,7 @@ class TarefaController extends Controller
      */
     public function destroy(Tarefa $tarefa)
     {
+        dd( $tarefa);
         if (auth()->user()->id === $tarefa->user_id) {
             Tarefa::destroy($tarefa->id);
         } else {
