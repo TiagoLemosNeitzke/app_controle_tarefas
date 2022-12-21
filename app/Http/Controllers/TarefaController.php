@@ -27,9 +27,9 @@ class TarefaController extends Controller
         if (auth()->check()) {
             $name = auth()->user()->name;
             $user_id = auth()->user()->id;
-            //dd($id);
-            $tarefas = Tarefa::where('user_id', $user_id)->paginate(5);
-            //dd($tarefas);
+           
+            $tarefas = Tarefa::where('user_id', $user_id)->orderBy('data_limite_conclusao', 'asc')->paginate(5);
+           //dd($tarefas);
             return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
         }
     }
@@ -72,8 +72,8 @@ class TarefaController extends Controller
         $name = auth()->user()->name;
         $user_id = auth()->user()->id;
         
-        $tarefas = Tarefa::where('user_id', $user_id)->paginate(5);
-        
+        $tarefas = Tarefa::where('user_id', $user_id)->orderBy('data_limite_conclusao', 'asc')->paginate(5);
+      
         return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
     }
 
