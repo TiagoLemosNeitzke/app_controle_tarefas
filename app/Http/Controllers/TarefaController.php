@@ -54,7 +54,7 @@ class TarefaController extends Controller
     {
         $dados = $request->all('tarefa', 'data_limite_conclusao');
         $dados['user_id'] = auth()->user()->id;
-        //dd($dados);
+        
         $tarefa = Tarefa::create($dados);
         $destinatario = auth()->user()->email; // pega o endereço de email do usuário logado
         //Mail::to($destinatario)->send(new NovaTarefaMail($tarefa)); // descomentar para enviar email sempre que uma tarefa for criada
@@ -71,9 +71,9 @@ class TarefaController extends Controller
     {
         $name = auth()->user()->name;
         $user_id = auth()->user()->id;
-        //dd($id);
+        
         $tarefas = Tarefa::where('user_id', $user_id)->paginate(5);
-        //dd($tarefas);
+        
         return view('tarefa.index', ['name' => $name, 'tarefas' => $tarefas]);
     }
 
