@@ -53,12 +53,16 @@
                                                 href="{{ route('tarefa.edit', ['tarefa' => $tarefa->id]) }}">Editar</a>
                                         </td>
                                         <td>
-                                            <form action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}"
+                                           
+                                           
+                                           <x-modal></x-modal>
+                                           
+                                           {{--  <form action="{{ route('tarefa.destroy', ['tarefa' => $tarefa->id]) }}"
                                                 method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button class="btn btn-danger" type="submit">Excluir</button>
-                                            </form>
+                                            </form> --}}
                                         </td>
                                     </tr>
                                 @endforeach

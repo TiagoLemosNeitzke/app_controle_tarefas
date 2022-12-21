@@ -25,9 +25,34 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Controle de Tarefas') }}
+                @auth
+                    <a class="navbar-brand" href="{{ url('/tarefa') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-list-task text-primary" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z" />
+                        <path
+                            d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z" />
+                        <path fill-rule="evenodd"
+                            d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z" />
+                    </svg>
+                    <span class="text-primary">{{ config('app.name', 'Controle de Tarefas') }}</span>
                 </a>
+                @endauth
+                @guest
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
+                        class="bi bi-list-task text-primary" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z" />
+                        <path
+                            d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z" />
+                        <path fill-rule="evenodd"
+                            d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z" />
+                    </svg>
+                    <span class="text-primary">{{ config('app.name', 'Controle de Tarefas') }}</span>
+                </a>
+                @endguest
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -46,17 +71,15 @@
                         @guest
 
                             @if (Route::has('login'))
+    
                                 <li class="nav-item">
-                                    <a href="{{ url('/') }}" class="nav-link">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">Entrar</a>
+                                    <a class="nav-link text-primary" href="{{ route('login') }}">Entrar</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Registrar</a>
+                                    <a class="nav-link text-primary" href="{{ route('register') }}">Registrar</a>
                                 </li>
                             @endif
                         @else
